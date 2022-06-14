@@ -1,5 +1,6 @@
 package model;
 
+import DAO.Class.ErroDAO;
 import DAO.Class.QuartoDAOClass;
 import DAO.Class.UsuarioDAOClass;
 import java.text.ParseException;
@@ -13,7 +14,7 @@ public class Reserva {
     private Quarto quarto;
     private Date inicio, fim;
 
-    public Reserva(String usuario_cpf, String quarto_nome, String inicio, String fim) throws ParseException {
+    public Reserva(String usuario_cpf, String quarto_nome, String inicio, String fim) throws ParseException, ErroDAO {
         UsuarioDAOClass daoU = new UsuarioDAOClass();
         QuartoDAOClass daoQ = new QuartoDAOClass();
         
@@ -29,7 +30,7 @@ public class Reserva {
         daoQ.sair();
     }
     
-    public Reserva(int id_reserva, String usuario_cpf, String quarto_nome, String inicio, String fim) throws ParseException {
+    public Reserva(int id_reserva, String usuario_cpf, String quarto_nome, String inicio, String fim) throws ParseException, ErroDAO {
         UsuarioDAOClass daoU = new UsuarioDAOClass();
         QuartoDAOClass daoQ = new QuartoDAOClass();
         
