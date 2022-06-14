@@ -13,6 +13,13 @@ import jakarta.servlet.http.HttpServletResponse;
 public class Logar extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if ("1".equals(request.getParameter("flag"))) {
+            response.sendRedirect("login.jsp");
+        }
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             UsuarioDAOClass daoU = new UsuarioDAOClass();
@@ -21,12 +28,14 @@ public class Logar extends HttpServlet {
             String senha = (String) request.getAttribute("senha");
 
             if (cpf != null && senha != null) {
-                if(daoU.logar(cpf, senha).isCliente()){
-                    request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp");
-                }else{
-                    request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp");
+                if (daoU.logar(cpf, senha).isCliente()) {
+                    request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
                 }
-                
+
+            }else{
+                response.sendRedirect("login.jsp?mensagem=Dados Invalidos!");
             }
 
             daoU.sair();

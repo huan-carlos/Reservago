@@ -3,9 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Reservago | ${initParam.nomeHotel}</title>
+        <title>Hotel ${initParam.nomeHotel}</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <nav>
+            <a href="logar?flag=1">Logar</a>
+        </nav>
     </body>
 </html>
