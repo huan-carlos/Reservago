@@ -1,0 +1,10 @@
+DAO\Class\QuartoDAOClass.class
+DAO\Interfaces\QuartoDAOInterface.class
+controller\usuario\CreateUser.class
+DAO\Class\ReservaDAOClass.class
+DAO\Class\UsuarioDAOClass.class
+model\Usuario.class
+DAO\Interfaces\ReservaDAOInterface.class
+model\Quarto.class
+model\Reserva.class
+DAO\Interfaces\UsuarioDAOInterface.class

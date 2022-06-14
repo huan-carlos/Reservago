@@ -1,18 +1,19 @@
 package DAO.Interfaces;
 
+import DAO.Class.ErroDAO;
 import model.Usuario;
 
 public interface UsuarioDAOInterface {
 
-    public void create(Usuario u);
+    public void create(Usuario u) throws ErroDAO;
 
-    public Usuario read(String cpf);
+    public Usuario read(String cpf) throws ErroDAO;
 
-    public void update(Usuario u);
+    public void update(Usuario u) throws ErroDAO;
 
-    public void delete(String cpf);
+    public void delete(String cpf) throws ErroDAO;
 
-    public Usuario logar(String cpf, String senha);
+    public Usuario logar(String cpf, String senha) throws ErroDAO;
 
-    public void sair();
+    public void sair() throws ErroDAO;
 }
