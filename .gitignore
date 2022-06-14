@@ -26,3 +26,4 @@ replay_pid*
 # Variaveis de Ambiente
 *.propriet
 *.properties
+/target/
