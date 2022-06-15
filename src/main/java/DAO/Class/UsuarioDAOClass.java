@@ -6,8 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import model.Usuario;
 
 public class UsuarioDAOClass implements UsuarioDAOInterface {
@@ -17,7 +16,7 @@ public class UsuarioDAOClass implements UsuarioDAOInterface {
     public UsuarioDAOClass() throws ErroDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/reservago?useSSL=false", "root", "Pr0fessor");
+            conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Reservago?useSSL=false", "root", "Pr0fessor");
         } catch (ClassNotFoundException | SQLException ex) {
             throw new ErroDAO(ex);
         }
@@ -38,7 +37,27 @@ public class UsuarioDAOClass implements UsuarioDAOInterface {
 
         } catch (SQLException ex) {
             throw new ErroDAO(ex);
-        } 
+        }
+    }
+
+    @Override
+    public ArrayList<Usuario> read() throws ErroDAO {
+        ArrayList<Usuario> r = new ArrayList();
+
+        try ( PreparedStatement ps = conection.prepareStatement("SELECT cpf, nome, endereco, telefone, senha, cliente FROM usuario;")) {
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                r.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6)));
+
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
     }
 
     @Override
@@ -138,5 +157,4 @@ public class UsuarioDAOClass implements UsuarioDAOInterface {
             System.out.println(ex);
         }
     }
-
 }

@@ -10,33 +10,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Usuario;
 
-@WebServlet(name = "CreateUser", urlPatterns = {"/createuser"})
-public class CreateUser extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if ("1".equals(request.getParameter("flag"))) {
-            request.getRequestDispatcher("/WEB-INF/view/usuario/createuser.jsp").forward(request, response);
-        }
-    }
+@WebServlet(name = "UpdateUser", urlPatterns = {"/updateuser"})
+public class UpdateUser extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Dopost");
         try {
             UsuarioDAOClass daoU = new UsuarioDAOClass();
 
             String nome = request.getParameter("nome");
-            String endereco = request.getParameter("endereco");
-            String telefone = request.getParameter("telefone");
-            String senha = request.getParameter("senha");
-            String cpf = request.getParameter("cpf");
+            String endereco = (String) request.getParameter("endereco");
+            String telefone = (String) request.getParameter("telefone");
+            String senha = (String) request.getParameter("senha");
+            String cpf = (String) request.getParameter("cpf");
             boolean cliente = Boolean.parseBoolean(request.getParameter("cliente"));
 
             if (nome != null && telefone != null && senha != null && cpf != null) {
                 Usuario u = new Usuario(nome, endereco, telefone, senha, cpf, cliente);
-                daoU.create(u);
-                request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
+                daoU.update(u);
             }
 
             daoU.sair();
@@ -50,6 +41,6 @@ public class CreateUser extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

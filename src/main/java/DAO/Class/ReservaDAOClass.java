@@ -44,7 +44,7 @@ public class ReservaDAOClass implements ReservaDAOInterface {
     }
 
     @Override
-    public Reserva read(int id_reserva) {
+    public Reserva read(int id_reserva) throws ErroDAO {
         Reserva r = null;
         try ( PreparedStatement ps = conection.prepareStatement("SELECT id_reserva, usuario_cpf, quarto_nome, inicio, fim FROM reserva WHERE id_reserva=?;")) {
 
@@ -65,7 +65,7 @@ public class ReservaDAOClass implements ReservaDAOInterface {
     }
 
     @Override
-    public ArrayList<Reserva> read(String procuraPor, String dado) {
+    public ArrayList<Reserva> read(String procuraPor, String dado) throws ErroDAO {
         ArrayList<Reserva> r = new ArrayList();
 
         try ( PreparedStatement ps = conection.prepareStatement("SELECT id_reserva, usuario_cpf, quarto_nome, inicio, fim FROM reserva WHERE " + procuraPor + "=?;")) {
@@ -129,7 +129,7 @@ public class ReservaDAOClass implements ReservaDAOInterface {
         try {
             Reserva r = new Reserva(1, "02020", "0000", "01-01-1993", "02-01-1993");
             System.out.println(">>>>>" + r.getInicio());
-        } catch (ParseException ex) {
+        } catch (ErroDAO | ParseException ex) {
             System.out.println(ex.getMessage());
         }
 

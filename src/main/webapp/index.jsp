@@ -3,12 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Área do Cliente | Hote ${initParam.nomeHotel}</title>
+        <title>Hotel ${initParam.nomeHotel}</title>
     </head>
     <body>
-        <h2>Menú do Cliente</h2>
         <nav>
-            <a href=""></a>
+            <a href="login.jsp">Logar</a>
         </nav>
     </body>
 </html>

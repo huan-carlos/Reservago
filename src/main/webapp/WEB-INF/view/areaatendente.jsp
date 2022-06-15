@@ -1,17 +1,16 @@
-<%-- 
-    Document   : areaatendente
-    Created on : 13 de jun. de 2022, 14:06:19
-    Author     : Huan
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Área do Atendente | Hotel ${initParam.nomeHotel}</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h2>Menú do Atendente</h2>
+        <nav>
+            <a href="createuser?flag=1">| Criar Usuário |</a>
+            <a href="readuser?flag=1">Listar Usuários |</a>
+            <a href="">Sair |</a>
+        </nav>
     </body>
 </html>

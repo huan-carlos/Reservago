@@ -3,12 +3,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Área do Cliente | Hote ${initParam.nomeHotel}</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h2>Menú do Cliente</h2>
-        <nav>
-            <a href=""></a>
-        </nav>
+        <h1>Hello World!</h1>
     </body>
 </html>
