@@ -75,6 +75,13 @@ public class Usuario {
     public boolean isCliente() {
         return cliente;
     }
+    
+    /*public String getCliente(){
+        if(this.cliente){
+            return "Cliente";
+        }
+        return "Atendente";
+    }*/
 
     public void setCliente(boolean cliente) {
         this.cliente = cliente;

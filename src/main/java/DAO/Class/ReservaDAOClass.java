@@ -17,7 +17,7 @@ public class ReservaDAOClass implements ReservaDAOInterface {
     public ReservaDAOClass() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Reservago?useSSL=false", "root", "Pr0fessor");
+            conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/reservago?useSSL=false", "root", "Pr0fessor");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }

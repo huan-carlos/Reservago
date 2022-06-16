@@ -17,19 +17,17 @@ public class ReadUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if ("1".equals(request.getParameter("flag"))) {
-            request.getRequestDispatcher("/WEB-INF/view/usuario/readuser.jsp").forward(request, response);
-        }
-        
+
         HttpSession sessao = request.getSession(false);
-        Usuario u = (Usuario) sessao.getAttribute("use");
-        ArrayList<Usuario> usuarios = null;
+        Usuario u = (Usuario) sessao.getAttribute("usuario");
 
         if (!u.isCliente()) {
             try {
                 UsuarioDAOClass daoU = new UsuarioDAOClass();
-                usuarios = daoU.read();
+                ArrayList<Usuario> usuarios = daoU.read();
                 sessao.setAttribute("usuarios", usuarios);
+
+                request.getRequestDispatcher("/WEB-INF/view/usuario/readuser.jsp").forward(request, response);
             } catch (ErroDAO ex) {
                 System.out.println(ex);
             }

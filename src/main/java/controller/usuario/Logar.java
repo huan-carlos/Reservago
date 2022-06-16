@@ -21,8 +21,6 @@ public class Logar extends HttpServlet {
 
             String cpf = request.getParameter("cpf");
             String senha = request.getParameter("senha");
-            
-            System.out.println(">>>>>"+cpf+">>>>>>"+senha);
 
             if (cpf != null && senha != null) {
                 Usuario use = daoU.logar(cpf, senha);

@@ -9,7 +9,7 @@
         <h2>Menú do Atendente</h2>
         <nav>
             <a href="createuser?flag=1">| Criar Usuário |</a>
-            <a href="readuser?flag=1">Listar Usuários |</a>
+            <a href="readuser">Listar Usuários |</a>
             <a href="">Sair |</a>
         </nav>
     </body>

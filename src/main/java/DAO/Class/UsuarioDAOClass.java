@@ -16,7 +16,7 @@ public class UsuarioDAOClass implements UsuarioDAOInterface {
     public UsuarioDAOClass() throws ErroDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Reservago?useSSL=false", "root", "Pr0fessor");
+            conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/reservago?useSSL=false", "root", "Pr0fessor");
         } catch (ClassNotFoundException | SQLException ex) {
             throw new ErroDAO(ex);
         }
@@ -42,14 +42,13 @@ public class UsuarioDAOClass implements UsuarioDAOInterface {
 
     @Override
     public ArrayList<Usuario> read() throws ErroDAO {
-        ArrayList<Usuario> r = new ArrayList();
+        ArrayList<Usuario> r = new ArrayList<>();
 
         try ( PreparedStatement ps = conection.prepareStatement("SELECT cpf, nome, endereco, telefone, senha, cliente FROM usuario;")) {
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                r.add(new Usuario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6)));
-
+            while (rs.next()) {
+                r.add(new Usuario(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(1), rs.getBoolean(6)));
             }
 
             ps.close();
@@ -144,9 +143,10 @@ public class UsuarioDAOClass implements UsuarioDAOInterface {
     public static void main(String[] args) {
         try {
             UsuarioDAOClass dao = new UsuarioDAOClass();
-            Usuario u = new Usuario("Huan Carlos", "604 Norte", "63992028204", "teste", "03650829100", false);
+
+            /*Usuario u = new Usuario("Huan Carlos", "604 Norte", "63992028204", "teste", "03650829100", false);
             dao.create(u);
-            /*System.out.println("Lendo Read: " + dao.read(u.getCpf()));
+            System.out.println("Lendo Read: " + dao.read(u.getCpf()));
             u.setEndereco("Palmas");
             dao.update(u);
             System.out.println("Lendo Update " + dao.read(u.getCpf()));
