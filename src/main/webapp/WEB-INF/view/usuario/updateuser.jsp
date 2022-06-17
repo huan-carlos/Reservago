@@ -1,10 +1,5 @@
-<%-- 
-    Document   : updateuser
-    Created on : 14 de jun de 2022, 21:52:04
-    Author     : aluno
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="tag" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +7,7 @@
         <title>${initParam.nomeHotel} | Editar Usuário</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h2>Edição de Usuário</h2>
+        <tag:PageUpdateUser usuario="${sessionScope.userToUpdate}" />
     </body>
 </html>

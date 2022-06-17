@@ -18,5 +18,5 @@
         </c:choose>
     </td>
     <td><a href="deleteuser?cpf=${usuario.cpf}">Deletar</a></td>
-    <td><a href="editarlembrete?codigo=${usuario}&flag=1">Editar</a></td>
+    <td><a href="updateuser?cpf=${usuario.cpf}">Editar</a></td>
 </tr>

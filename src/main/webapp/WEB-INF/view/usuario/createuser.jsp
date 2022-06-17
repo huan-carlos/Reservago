@@ -7,6 +7,9 @@
         <title>${initParam.nomeHotel} | Cadastrar Usuário</title>
     </head>
     <body>
+        <h2>
+            Cadastro de <tag:IsClient usuario="${sessionScope.usuario}"/>
+        </h2>
         <tag:PageCreateUser usuario="${sessionScope.usuario}"/>
     </body>
 </html>

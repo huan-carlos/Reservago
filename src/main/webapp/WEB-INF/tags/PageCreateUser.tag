@@ -2,17 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@attribute name="usuario" type="model.Usuario"%>
 
-<h2>
-    Cadastro de 
-    <c:choose>
-        <c:when test="${usuario == null}">
-            <c:out value="Cliente" />
-        </c:when>
-        <c:otherwise>
-            <c:out value="Usuário" />
-        </c:otherwise>
-    </c:choose>
-</h2>
 <form action="createuser" method="POST">
     <p>Preencha os dados:</p>
     <p>CPF</p>
@@ -27,15 +16,15 @@
     <input type="password" name="senha" placeholder="Informe a Senha" required>
 
     <c:choose>
-        <c:when test="${usuario.cliente == false}">
+        <c:when test="${usuario.cliente == true}">
+            <input type="radio" name="cliente" value="true" required checked hidden>
+        </c:when>
+        <c:otherwise>
             <p>Tipo de Usuário</p>
             <input type="radio" name="cliente" value="true" required>
             <label>Cliente</label>
             <input type="radio" name="cliente" value="false" required>
             <label>Atendente</label>
-        </c:when>
-        <c:otherwise>
-            <input type="radio" name="cliente" value="true" required checked hidden>
         </c:otherwise>
     </c:choose>
 
