@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hotel ${initParam.nomeHotel}</title>
+        <title>${initParam.nomeHotel} | Cadastrar Usuário</title>
     </head>
     <body>
         <h2>Cadastro de Usuário</h2>

@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Área do Atendente | Hotel ${initParam.nomeHotel}</title>
+        <title>${initParam.nomeHotel} | Área do Atendente</title>
     </head>
     <body>
         <h2>Menú do Atendente</h2>

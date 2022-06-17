@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Listar Usuários | Hotel ${initParam.nomeHotel}</title>
+        <title>${initParam.nomeHotel} | Listar Usuário</title>
     </head>
     <body>
         <h2>Listagem de Usuários</h2>

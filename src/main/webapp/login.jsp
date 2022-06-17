@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hotel ${initParam.nomeHotel} | Login</title>
+        <title>${initParam.nomeHotel} | Login</title>
     </head>
     <body>
         <h2>Página de Login</h2>

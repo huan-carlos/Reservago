@@ -11,6 +11,6 @@
     </session-config>
     <context-param>
         <param-name>nomeHotel</param-name>
-        <param-value>Por do Sol</param-value>
+        <param-value>Hotel Morpheus</param-value>
     </context-param>
 </web-app>
