@@ -7,7 +7,7 @@
     <td>${usuario.endereco}</td>
     <td>${usuario.telefone}</td>
     <td>${usuario.senha}</td>
-    <<td>
+    <td>
         <c:choose>
             <c:when test="${usuario.cliente == true}">
                 <c:out value="Cliente" />
