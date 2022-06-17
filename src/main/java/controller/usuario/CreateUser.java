@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Usuario;
 
 @WebServlet(name = "CreateUser", urlPatterns = {"/createuser"})
@@ -22,9 +23,9 @@ public class CreateUser extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Dopost");
         try {
             UsuarioDAOClass daoU = new UsuarioDAOClass();
+            HttpSession sessao = request.getSession(false);
 
             String nome = request.getParameter("nome");
             String endereco = request.getParameter("endereco");
@@ -36,7 +37,11 @@ public class CreateUser extends HttpServlet {
             if (nome != null && telefone != null && senha != null && cpf != null) {
                 Usuario u = new Usuario(nome, endereco, telefone, senha, cpf, cliente);
                 daoU.create(u);
-                request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
+                if (sessao.getAttribute("usuario") == null) {
+                    response.sendRedirect("login.jsp");
+                } else {
+                    request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
+                }
             }
 
             daoU.sair();

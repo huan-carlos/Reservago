@@ -6,8 +6,14 @@
         <title>${initParam.nomeHotel} | Página Inicial</title>
     </head>
     <body>
-        <nav>
-            <a href="login.jsp">Logar</a>
-        </nav>
+        <header>
+            <nav>
+                <a href="login.jsp">Logar</a>
+                <a href="createuser?flag=1">Cadastrar</a>
+            </nav>
+        </header>
+        <main>
+            
+        </main>
     </body>
 </html>
