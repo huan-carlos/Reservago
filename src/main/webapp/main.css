@@ -1,0 +1,20 @@
+@keyframes sumir {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+.mensagem{
+    font-size: 2em;
+    text-align: center;
+    background-color: red;
+    opacity:0;
+    animation-name: sumir;
+    animation-duration: 4s;
+    position:relative;
+    top: 2em;
+    width: 15%;
+    border-radius: 10px;
+}

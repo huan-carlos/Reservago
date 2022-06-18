@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="main.css" type="text/css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${initParam.nomeHotel} | Login</title>
+        <title>${initParam.nomeHotel} | Página de Login</title>
     </head>
     <body>
         <h2>Página de Login</h2>
@@ -16,5 +17,6 @@
             <p></p>
             <input type="submit" value="Logar">
         </form>
+        <div class="mensagem">${param.mensagem}</div>
     </body>
 </html>

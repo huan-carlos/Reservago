@@ -21,18 +21,20 @@ public class Logar extends HttpServlet {
 
             String cpf = request.getParameter("cpf");
             String senha = request.getParameter("senha");
+            
+            Usuario use = daoU.logar(cpf, senha);
 
-            if (cpf != null && senha != null) {
-                Usuario use = daoU.logar(cpf, senha);
+            if (use != null) {
                 HttpSession sessao = request.getSession(true);
                 sessao.setAttribute("usuario", use);
                 if (use.isCliente()) {
                     request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
+                    response.sendRedirect("readroom");
                 }
 
             } else {
+                //response.sendError(401, "Dados Invalidos!");
                 response.sendRedirect("login.jsp?mensagem=Dados Invalidos!");
             }
 
