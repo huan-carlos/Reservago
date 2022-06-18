@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="tag" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +7,7 @@
         <title>${initParam.nomeHotel} | Cadastrar Quarto</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h2>Cadastro de Quarto</h2>
+        <tag:PageCreateRoom usuario="${sessionScope.usuario}"/>
     </body>
 </html>

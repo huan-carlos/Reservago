@@ -18,10 +18,10 @@ public class CreateRoom extends HttpServlet {
         try {
             QuartoDAOClass daoQ = new QuartoDAOClass();
 
-            String nome = (String) request.getAttribute("nome");
-            String descricao = (String) request.getAttribute("descricao");
-            double valor_diaria = (double) request.getAttribute("valor_diaria");
-            String tipo = (String) request.getAttribute("tipo");
+            String nome = request.getParameter("nome");
+            String descricao = request.getParameter("descricao");
+            double valor_diaria = Double.parseDouble(request.getParameter("valor_diaria"));
+            String tipo = request.getParameter("tipo");
 
             if (nome != null && descricao != null && valor_diaria > 0 && tipo != null) {
                 Quarto q = new Quarto(nome, descricao, tipo, valor_diaria);
@@ -29,6 +29,8 @@ public class CreateRoom extends HttpServlet {
             }
 
             daoQ.sair();
+            
+            response.sendRedirect("readroom");
 
         } catch (ErroDAO ex) {
             System.out.println(ex);

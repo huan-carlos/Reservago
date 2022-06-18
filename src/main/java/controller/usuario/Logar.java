@@ -27,8 +27,8 @@ public class Logar extends HttpServlet {
             if (use != null) {
                 HttpSession sessao = request.getSession(true);
                 sessao.setAttribute("usuario", use);
-                if (use.isCliente()) {
-                    request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp").forward(request, response);
+                if (!use.isCliente()) {
+                    request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("readroom");
                 }

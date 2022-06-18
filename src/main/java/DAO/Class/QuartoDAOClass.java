@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Quarto;
-import model.Usuario;
 
 public class QuartoDAOClass implements QuartoDAOInterface {
 
@@ -67,7 +66,7 @@ public class QuartoDAOClass implements QuartoDAOInterface {
         try ( PreparedStatement ps = conection.prepareStatement("SELECT nome, descricao, tipo, valor_diaria FROM quarto;")) {
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 r.add(new Quarto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4)));
             }
 
@@ -120,14 +119,16 @@ public class QuartoDAOClass implements QuartoDAOInterface {
     public static void main(String[] args) {
         try {
             QuartoDAOClass dao = new QuartoDAOClass();
-            Quarto q = new Quarto("A101", "2 Quarto + 1 Banheiro", "Casal", 100.00);
+            System.out.println(dao.read());
+            
+            /*Quarto q = new Quarto("A101", "2 Quarto + 1 Banheiro", "Casal", 100.00);
             dao.create(q);
             System.out.println("Lendo Após Create: " + dao.read(q.getNome()));
             q.setValor_diaria(500.00);
             dao.update(q);
             System.out.println("Lendo Após Update: " + dao.read(q.getNome()));
             dao.delete(q.getNome());
-            System.out.println("Deletado");
+            System.out.println("Deletado");*/
         } catch (ErroDAO ex) {
             Logger.getLogger(QuartoDAOClass.class.getName()).log(Level.SEVERE, null, ex);
         }

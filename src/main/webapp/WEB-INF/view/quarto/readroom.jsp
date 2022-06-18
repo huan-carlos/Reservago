@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags/" prefix="tag" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +7,8 @@
         <title>${initParam.nomeHotel} | Listar Quartos</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h2>Quartos Cadastrados</h2>
+        >>${sessionScope.quartos}
+        <tag:ReadArrayRoom quartos="${sessionScope.quartos}" />
     </body>
 </html>
