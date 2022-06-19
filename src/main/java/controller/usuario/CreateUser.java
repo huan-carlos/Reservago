@@ -26,6 +26,7 @@ public class CreateUser extends HttpServlet {
         try {
             UsuarioDAOClass daoU = new UsuarioDAOClass();
             HttpSession sessao = request.getSession(false);
+            Usuario use = (Usuario) sessao.getAttribute("usuario");
 
             String nome = request.getParameter("nome");
             String endereco = request.getParameter("endereco");
@@ -34,18 +35,14 @@ public class CreateUser extends HttpServlet {
             String cpf = request.getParameter("cpf");
             boolean cliente = Boolean.parseBoolean(request.getParameter("cliente"));
 
-            if (nome != null && telefone != null && senha != null && cpf != null) {
-                Usuario u = new Usuario(nome, endereco, telefone, senha, cpf, cliente);
-                daoU.create(u);
-                if (sessao.getAttribute("usuario") == null) {
-                    response.sendRedirect("login.jsp");
-                } else {
-                    request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
+            if (use != null && !use.isCliente()) {
+                if (nome != null && telefone != null && senha != null && cpf != null) {
+                    Usuario u = new Usuario(nome, endereco, telefone, senha, cpf, cliente);
+                    daoU.create(u);
+                    daoU.sair();
+                    response.sendRedirect("readuser");
                 }
             }
-
-            daoU.sair();
-
         } catch (ErroDAO ex) {
             System.out.println(ex);
             //mensagem de erro para a View
