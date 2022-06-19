@@ -8,6 +8,6 @@
     </head>
     <body>
         <h2>Cadastro de Quarto</h2>
-        <tag:PageCreateRoom usuario="${sessionScope.usuario}"/>
+        <tag:PageCreateRoom/>
     </body>
 </html>

@@ -14,6 +14,13 @@ import model.Quarto;
 public class CreateRoom extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if ("1".equals(request.getParameter("flag"))) {
+            request.getRequestDispatcher("/WEB-INF/view/quarto/createroom.jsp").forward(request, response);
+        }
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             QuartoDAOClass daoQ = new QuartoDAOClass();
@@ -29,7 +36,7 @@ public class CreateRoom extends HttpServlet {
             }
 
             daoQ.sair();
-            
+
             response.sendRedirect("readroom");
 
         } catch (ErroDAO ex) {

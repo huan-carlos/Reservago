@@ -8,7 +8,6 @@
     </head>
     <body>
         <h2>Quartos Cadastrados</h2>
-        >>${sessionScope.quartos}
         <tag:ReadArrayRoom quartos="${sessionScope.quartos}" />
     </body>
 </html>
