@@ -29,11 +29,6 @@ public class ReadRoom extends HttpServlet {
                 quartos = daoQ.read();
                 sessao.setAttribute("quartos", quartos);
                 request.getRequestDispatcher("/WEB-INF/view/quarto/readroom.jsp").forward(request, response);
-
-            } else if (u.isCliente()) {
-                quartos = daoQ.read();
-                sessao.setAttribute("quartos", quartos);
-                request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp").forward(request, response);
             }
             daoQ.sair();
         } catch (ErroDAO ex) {
