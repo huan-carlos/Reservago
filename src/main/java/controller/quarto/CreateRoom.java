@@ -8,7 +8,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Quarto;
+import model.Usuario;
 
 @WebServlet(name = "CreateRoom", urlPatterns = {"/createroom"})
 public class CreateRoom extends HttpServlet {
@@ -24,20 +26,23 @@ public class CreateRoom extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             QuartoDAOClass daoQ = new QuartoDAOClass();
+            HttpSession sessao = request.getSession(false);
+            Usuario use = (Usuario) sessao.getAttribute("usuario");
 
             String nome = request.getParameter("nome");
             String descricao = request.getParameter("descricao");
             double valor_diaria = Double.parseDouble(request.getParameter("valor_diaria"));
             String tipo = request.getParameter("tipo");
 
-            if (nome != null && descricao != null && valor_diaria > 0 && tipo != null) {
-                Quarto q = new Quarto(nome, descricao, tipo, valor_diaria);
-                daoQ.create(q);
+            if (use != null && !use.isCliente()) {
+                if (nome != null && descricao != null && valor_diaria > 0 && tipo != null) {
+                    Quarto q = new Quarto(nome, descricao, tipo, valor_diaria);
+                    daoQ.create(q);
+                    daoQ.sair();
+                    response.sendRedirect("readroom");
+                }
             }
-
-            daoQ.sair();
-
-            response.sendRedirect("readroom");
+            
 
         } catch (ErroDAO ex) {
             System.out.println(ex);
