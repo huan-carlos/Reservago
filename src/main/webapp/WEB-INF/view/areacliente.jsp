@@ -15,7 +15,7 @@
         </header>
         <main>
             <article>
-                <tag:ReadArrayRoom quartos="${sessionScope.quartos}" />
+                <%-- Onde vamos clocar os quartos dos Clientes --%>
             </article>
         </main>
     </body>

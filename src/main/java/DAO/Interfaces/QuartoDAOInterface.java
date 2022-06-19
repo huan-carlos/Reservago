@@ -3,7 +3,6 @@ package DAO.Interfaces;
 import DAO.Class.ErroDAO;
 import java.util.ArrayList;
 import model.Quarto;
-import model.Reserva;
 
 public interface QuartoDAOInterface {
 
