@@ -42,7 +42,6 @@ public class CreateRoom extends HttpServlet {
                     response.sendRedirect("readroom");
                 }
             }
-            
 
         } catch (ErroDAO ex) {
             System.out.println(ex);
