@@ -21,7 +21,7 @@ public class UpdateUser extends HttpServlet {
             Usuario u = (Usuario) sessao.getAttribute("usuario");
             if (!u.isCliente()) {
                 try {
-                    String cpf = (String) request.getParameter("cpf");
+                    String cpf = request.getParameter("cpf");
                     UsuarioDAOClass daoU = new UsuarioDAOClass();
 
                     Usuario userToUpdate = daoU.read(cpf);
@@ -58,9 +58,7 @@ public class UpdateUser extends HttpServlet {
                         Usuario user = new Usuario(nome, endereco, telefone, senha, cpf, cliente);
                         daoU.update(user);
                     }
-
                     daoU.sair();
-                    
                     response.sendRedirect("readuser");
 
                 } catch (ErroDAO ex) {
