@@ -10,12 +10,13 @@
         <header>
             <h2>Menú do Cliente</h2>
             <nav>
-                <a href="sair">Sair</a>
+                <a href="sair">| Sair |</a>
             </nav>
         </header>
         <main>
             <article>
-                <%-- Onde vamos clocar os quartos dos Clientes --%>
+                <p>Lista de Reservas</p>
+                <tag:ReadArrayBooking usuario="${sessionScope.use}" reservas="${sessionScope.bookingUser}"/>
             </article>
         </main>
     </body>

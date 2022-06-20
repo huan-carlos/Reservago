@@ -21,7 +21,7 @@ public class Reserva {
         this.usuario = daoU.read(usuario_cpf);
         this.quarto = daoQ.read(quarto_nome);
         
-        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 
         this.inicio = sdformat.parse(inicio);
         this.fim = sdformat.parse(fim);
@@ -39,7 +39,7 @@ public class Reserva {
         this.usuario = daoU.read(usuario_cpf);
         this.quarto = daoQ.read(quarto_nome);
         
-        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 
         this.inicio = sdformat.parse(inicio);
         this.fim = sdformat.parse(fim);
@@ -68,7 +68,7 @@ public class Reserva {
     }
 
     public String getInicio() {
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
         return sdformat.format(this.inicio);
     }
 
@@ -77,7 +77,7 @@ public class Reserva {
     }
 
     public String getFim() {
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
         return sdformat.format(this.fim);
     }
 

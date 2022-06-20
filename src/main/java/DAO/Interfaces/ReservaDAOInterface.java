@@ -11,6 +11,8 @@ public interface ReservaDAOInterface {
     public Reserva read(int id_reserva) throws ErroDAO;
 
     public ArrayList<Reserva> read(String procuraPor, String dado) throws ErroDAO;
+    
+    public ArrayList<Reserva> read() throws ErroDAO;
 
     public void update(Reserva r) throws ErroDAO;
 

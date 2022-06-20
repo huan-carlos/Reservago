@@ -12,6 +12,8 @@
             <a href="readuser">Listar Usuários |</a>
             <a href="createroom?flag=1">| Criar Quarto |</a>
             <a href="readroom">Listar Quartos |</a>
+            <a href="">| Criar Reserva |</a>
+            <a href="readbooking">Listar Reserva |</a>
             <a href="sair">Sair |</a>
         </nav>
     </body>

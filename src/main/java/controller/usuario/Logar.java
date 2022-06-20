@@ -1,6 +1,7 @@
 package controller.usuario;
 
 import DAO.Class.ErroDAO;
+import DAO.Class.ReservaDAOClass;
 import DAO.Class.UsuarioDAOClass;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import model.Reserva;
 import model.Usuario;
 
 @WebServlet(name = "Logar", urlPatterns = {"/logar"})
@@ -18,10 +21,11 @@ public class Logar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             UsuarioDAOClass daoU = new UsuarioDAOClass();
+            ReservaDAOClass daoR = new ReservaDAOClass();
 
             String cpf = request.getParameter("cpf");
             String senha = request.getParameter("senha");
-            
+
             Usuario use = daoU.logar(cpf, senha);
 
             if (use != null) {
@@ -29,7 +33,9 @@ public class Logar extends HttpServlet {
                 sessao.setAttribute("usuario", use);
                 if (!use.isCliente()) {
                     request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
-                } else {
+                } else if (use.isCliente()) {
+                    ArrayList<Reserva> re = daoR.read("usuario_cpf", use.getCpf());
+                    sessao.setAttribute("bookingUser", re);
                     request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp").forward(request, response);
                 }
 

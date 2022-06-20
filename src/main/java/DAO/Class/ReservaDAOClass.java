@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import model.Reserva;
 
 public class ReservaDAOClass implements ReservaDAOInterface {
@@ -65,6 +67,23 @@ public class ReservaDAOClass implements ReservaDAOInterface {
     }
 
     @Override
+    public ArrayList<Reserva> read() throws ErroDAO {
+        ArrayList<Reserva> r = new ArrayList();
+
+        try ( PreparedStatement ps = conection.prepareStatement("SELECT id_reserva, usuario_cpf, quarto_nome, inicio, fim FROM reserva;")) {
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                r.add(new Reserva(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+            ps.close();
+        } catch (SQLException | ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
+    }
+
+    @Override
     public ArrayList<Reserva> read(String procuraPor, String dado) throws ErroDAO {
         ArrayList<Reserva> r = new ArrayList();
 
@@ -73,11 +92,9 @@ public class ReservaDAOClass implements ReservaDAOInterface {
             ps.setString(1, dado);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next()) {            
                 r.add(new Reserva(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-
             }
-
             ps.close();
 
         } catch (SQLException | ParseException ex) {
@@ -134,5 +151,4 @@ public class ReservaDAOClass implements ReservaDAOInterface {
         }
 
     }
-
 }
