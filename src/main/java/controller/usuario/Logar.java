@@ -30,7 +30,7 @@ public class Logar extends HttpServlet {
                 if (!use.isCliente()) {
                     request.getRequestDispatcher("/WEB-INF/view/areaatendente.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("readroom");
+                    request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp").forward(request, response);
                 }
 
             } else {

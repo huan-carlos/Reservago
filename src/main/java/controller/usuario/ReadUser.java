@@ -30,8 +30,9 @@ public class ReadUser extends HttpServlet {
             } catch (ErroDAO ex) {
                 System.out.println(ex);
             }
+        } else {
+            response.sendRedirect("login.jsp?mensagem=Sem Permissao para Tal Acao!");
         }
-
     }
 
     @Override
