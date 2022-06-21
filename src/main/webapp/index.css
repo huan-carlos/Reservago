@@ -1,0 +1,20 @@
+table, th, td {
+    text-align: center;
+    border: 1px solid white;
+    border-collapse: collapse;
+    margin: 5px;
+}
+th, td {
+    background-color: #96D4D4;
+}
+
+main {
+    display: flex;
+
+}
+
+header {
+    background-color: darkgray;
+    padding: 5px;
+    margin-bottom: 5px;
+}
