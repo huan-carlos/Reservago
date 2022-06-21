@@ -11,7 +11,8 @@
         <header>
             <h2>Menú do Cliente</h2>
             <nav>
-                <a href="sair">| Sair |</a>
+                <a href="createbooking">| Criar uma Reserva |</a>
+                <a href="sair">Sair |</a>
             </nav>
         </header>
         <main>
