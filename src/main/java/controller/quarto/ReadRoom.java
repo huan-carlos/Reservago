@@ -19,22 +19,20 @@ public class ReadRoom extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sessao = request.getSession(false);
-        Usuario u = (Usuario) sessao.getAttribute("usuario");
         ArrayList<Quarto> quartos = null;
-
-        try {
-            QuartoDAOClass daoQ = new QuartoDAOClass();
-
-            if (!u.isCliente()) {
+        if (sessao != null) {
+            Usuario u = (Usuario) sessao.getAttribute("usuario");
+            try {
+                QuartoDAOClass daoQ = new QuartoDAOClass();
                 quartos = daoQ.read();
                 sessao.setAttribute("quartos", quartos);
                 request.getRequestDispatcher("/WEB-INF/view/quarto/readroom.jsp").forward(request, response);
-            }
-            daoQ.sair();
-        } catch (ErroDAO ex) {
-            System.out.println(ex);
-        }
 
+                daoQ.sair();
+            } catch (ErroDAO ex) {
+                System.out.println(ex);
+            }
+        }
     }
 
     @Override

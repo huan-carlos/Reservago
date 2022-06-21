@@ -29,8 +29,8 @@ public class ReservaDAOClass implements ReservaDAOInterface {
 
             ps.setString(1, r.getUsuario().getCpf());
             ps.setString(2, r.getQuarto().getNome());
-            ps.setString(3, r.getInicio());
-            ps.setString(4, r.getFim());
+            ps.setString(3, r.getInicioSQL());
+            ps.setString(4, r.getFimSQL());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {

@@ -7,7 +7,7 @@
         <title>${initParam.nomeHotel} | Listar Quartos</title>
     </head>
     <body>
-        <h2>Quartos Cadastrados</h2>
-        <tag:ReadArrayRoom quartos="${sessionScope.quartos}" />
+        <h2>Lista de Quartos</h2>
+        <tag:ReadArrayRoom usuario="${sessionScope.usuario}" quartos="${sessionScope.quartos}" />
     </body>
 </html>

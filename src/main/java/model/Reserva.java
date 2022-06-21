@@ -80,6 +80,16 @@ public class Reserva {
         SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
         return sdformat.format(this.fim);
     }
+    
+    public String getFimSQL() {
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        return sdformat.format(this.fim);
+    }
+    
+    public String getInicioSQL() {
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        return sdformat.format(this.inicio);
+    }
 
     public void setFim(Date fim) {
         this.fim = fim;
