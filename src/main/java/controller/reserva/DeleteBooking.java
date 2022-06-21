@@ -1,83 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
 package controller.reserva;
 
+import DAO.Class.ErroDAO;
+import DAO.Class.ReservaDAOClass;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import model.Reserva;
+import model.Usuario;
 
-/**
- *
- * @author sys-t
- */
-@WebServlet(name="DeleteBooking", urlPatterns={"/deletebooking"})
+@WebServlet(name = "DeleteBooking", urlPatterns = {"/deletebooking"})
 public class DeleteBooking extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DeleteBooking</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeleteBooking at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            HttpSession sessao = request.getSession(false);
+            Usuario use = (Usuario) sessao.getAttribute("usuario");
+            int id_reserva = Integer.parseInt(request.getParameter("id_reserva"));
+            ReservaDAOClass daoR = new ReservaDAOClass();
+            SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
+
+            Reserva r = daoR.read(id_reserva);
+            Date inicio = sdformat.parse(r.getInicio());
+
+            int dias = (int) ((inicio.getTime() / 1000 / 60 / 60 / 24) - (Calendar.getInstance().getTimeInMillis() / 1000 / 60 / 60 / 24));
+
+            if (use != null) {
+                if (use.getCpf().equals(r.getUsuario().getCpf())) {
+                    if (dias > 3) {
+                        daoR.delete(id_reserva);
+                    } else {
+                        request.getRequestDispatcher("/WEB-INF/view/areacliente.jsp?mensagem=Resvas com menos de 72Hrs nao podem ser Deletada. Fale com um Atendente!").forward(request, response);
+                    }
+                } else if (!use.isCliente()) {
+                    daoR.delete(id_reserva);
+                    daoR.sair();
+                    response.sendRedirect("readbooking");
+                }
+            }
+
+        } catch (ErroDAO | ParseException | IllegalStateException ex) {
+            System.out.println(ex);
         }
-    } 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
